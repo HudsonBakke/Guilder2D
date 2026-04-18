@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/exit_game_button.png</File>
+    <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/menu_background.png</File>
+    <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/NULL.png</File>
+    <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/player_sprite_map.png</File>
+    <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/pot.png</File>
+    <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/start_game_button.png</File>
+    <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/test_map.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
