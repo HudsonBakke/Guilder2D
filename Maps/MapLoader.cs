@@ -9,9 +9,8 @@ namespace Guilder2D;
 
 public class PlacedMapData
 {
-    public int TileWidth { get; set; }
-    public int TileHeight { get; set; }
-    public List<object> Tiles { get; set; } = [];
+    public string TilesetName { get; set; } = "";
+    public List<List<int>> Tiles { get; set; } = [];
     public List<MapObjectData> Objects { get; set; } = [];
 }
 
@@ -43,8 +42,12 @@ public static class MapLoader
     /// <returns></returns>
     public static PlacedMap LoadMap(ContentManager content, string path)
     {
-        PlacedMap newMap = new();
         PlacedMapData data = LoadMapData(path);
+        PlacedMap newMap = new(
+            content,
+            TilesetLoader.LoadTilesetData(data.TilesetName),
+            data.Tiles
+        );
         foreach(MapObjectData obj in data.Objects)
         {
             newMap.AddObject(

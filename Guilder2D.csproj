@@ -5,6 +5,12 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="Content/Tilesets/**/*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net9.0</TargetFramework>

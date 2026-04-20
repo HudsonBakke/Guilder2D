@@ -7,13 +7,13 @@ namespace Guilder2D;
 public class WorldScreen : Screen
 {
     private readonly Player _player;
-    private readonly Texture2D _mapTexture;
+    // private readonly Texture2D _mapTexture;
     private readonly Map _map;
     private readonly Camera _camera;
 
     public WorldScreen(ContentManager content, Player player)
     {
-        _mapTexture = content.Load<Texture2D>("test_map");
+        // _mapTexture = content.Load<Texture2D>("test_map");
         _player = player;
         _camera = new Camera();
 
@@ -34,8 +34,8 @@ public class WorldScreen : Screen
             _player.Center,
             Guilder2D.VirtualWidth,
             Guilder2D.VirtualHeight,
-            _mapTexture.Width,
-            _mapTexture.Height
+            _map.WidthInPixels,
+            _map.HeightInPixels
         );
     }
 
@@ -43,7 +43,7 @@ public class WorldScreen : Screen
     {
         spriteBatch.Begin(samplerState: SamplerState.PointClamp);
 
-        Vector2 mapScreenPos = _camera.WorldToScreen(Vector2.Zero);
+        /* Vector2 mapScreenPos = _camera.WorldToScreen(Vector2.Zero);
 
         spriteBatch.Draw(
             texture: _mapTexture,
@@ -55,7 +55,7 @@ public class WorldScreen : Screen
                 _mapTexture.Height
             ),
             color: Color.White
-        );
+        );*/
 
         _map.Draw(spriteBatch, _camera);
         _player.Draw(spriteBatch, _camera);

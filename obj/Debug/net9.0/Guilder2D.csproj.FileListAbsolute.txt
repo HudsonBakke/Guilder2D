@@ -39,3 +39,7 @@ C:\Users\hudso\OneDrive\Documents\C# Projects\Guilder2D\Guilder2D\obj\Debug\net9
 C:\Users\hudso\OneDrive\Documents\C# Projects\Guilder2D\Guilder2D\obj\Debug\net9.0\Guilder2D.genruntimeconfig.cache
 C:\Users\hudso\OneDrive\Documents\C# Projects\Guilder2D\Guilder2D\obj\Debug\net9.0\ref\Guilder2D.dll
 C:\Users\hudso\OneDrive\Documents\C# Projects\Guilder2D\Guilder2D\bin\Debug\net9.0\Content\NULL.xnb
+C:\Users\hudso\OneDrive\Documents\C# Projects\Guilder2D\Guilder2D\bin\Debug\net9.0\Content\tile_atlas.xnb
+C:\Users\hudso\OneDrive\Documents\C# Projects\Guilder2D\Guilder2D\obj\Debug\net9.0\Guilder2D.sourcelink.json
+C:\Users\hudso\OneDrive\Documents\C# Projects\Guilder2D\Guilder2D\bin\Debug\net9.0\Content\Tilesets\test_tileset\tileset.json
+C:\Users\hudso\OneDrive\Documents\C# Projects\Guilder2D\Guilder2D\bin\Debug\net9.0\Content\Tilesets\test_tileset\tile_atlas.png

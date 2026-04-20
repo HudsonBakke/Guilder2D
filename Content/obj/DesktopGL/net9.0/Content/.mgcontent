@@ -11,6 +11,7 @@
     <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/pot.png</File>
     <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/start_game_button.png</File>
     <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/test_map.png</File>
+    <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/Tilesets/test_tileset/tile_atlas.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
@@ -20,5 +21,6 @@
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
+    <File>tile_atlas.png</File>
   </DestFiles>
 </SourceFileCollection>
