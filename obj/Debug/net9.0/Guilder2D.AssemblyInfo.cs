@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Guilder2D")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d3f53901aee8e713df2db5215c29f28b668d8763")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dbf348b854b38c7b55f8a567e91ed2275bd4ec60")]
 [assembly: System.Reflection.AssemblyProductAttribute("Guilder2D")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Guilder2D")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Guilder2D;
 
@@ -12,6 +11,8 @@ public enum ScreenSwitch
     NoSwitch,
     Menu,
     NewWorld,
+    Settings,
+    Sub,
     Exit
 }
 
@@ -24,6 +25,20 @@ public abstract class Screen
     /// Signals to the ScreenManager to switch screens. Defaults to ScreenSwitch.NoSwitch
     /// </summary>
     public ScreenSwitch NextScreen { get; protected set; } = ScreenSwitch.NoSwitch;
+
+    /// <summary>
+    /// Filled with a value that is read by ScreenManager
+    /// </summary>
+    public Screen? SubScreen { get; protected set; } = null;
+
+    /// <summary>
+    /// Resets ScreenSwitch to NoSwitch. To be called when this screen is returned to after a subscreen is closed
+    /// </summary>
+    public void ResetSwitch()
+    {
+        NextScreen = ScreenSwitch.NoSwitch;
+        SubScreen = null;
+    }
 
     /// <summary>
     /// Used to send player input to the screen

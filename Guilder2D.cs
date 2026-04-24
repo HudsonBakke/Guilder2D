@@ -26,6 +26,9 @@ public class Guilder2D : Game
     private InputManager _inputManager;
     private RenderTarget2D _sceneTarget;
 
+    private int _windowWidth = 1920;
+    private int _windowHeight = 1080;
+
     private Rectangle GetPresentationRectangle()
     {
         int backBufferWidth = GraphicsDevice.PresentationParameters.BackBufferWidth;
@@ -49,8 +52,8 @@ public class Guilder2D : Game
         _graphics = new GraphicsDeviceManager(this);
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
-        _graphics.PreferredBackBufferWidth = 1920;
-        _graphics.PreferredBackBufferHeight = 1080;
+        _graphics.PreferredBackBufferWidth = _windowWidth;
+        _graphics.PreferredBackBufferHeight = _windowHeight;
 
         
     }
@@ -71,7 +74,7 @@ public class Guilder2D : Game
             VirtualHeight
         );
 
-        _screenManager = new(GraphicsDevice, Content);
+        _screenManager = new(_graphics, Content);
         _inputManager = new();
     }
 

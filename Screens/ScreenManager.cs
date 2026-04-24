@@ -10,11 +10,13 @@ public class ScreenManager
 {
     private readonly ScreenStack _screenStack = new();
     private readonly ContentManager _content;
+    private readonly GraphicsDeviceManager _graphics;
     private GameInput _gameInput;
 
-    public ScreenManager(GraphicsDevice graphicsDevice, ContentManager content)
+    public ScreenManager(GraphicsDeviceManager graphics, ContentManager content)
     {
         // This constructor will eventually load a start game animation, but for now it will just load directly into the main menu
+        _graphics = graphics;
         _content = content;
         _screenStack.Push(new MenuScreen(_content));
     }
@@ -50,6 +52,7 @@ public class ScreenManager
             {
                 case ScreenSwitch.Exit:
                     _screenStack.Pop();
+                    _screenStack.Peek()?.ResetSwitch();
                     break;
 
                 case ScreenSwitch.Menu:
@@ -65,7 +68,20 @@ public class ScreenManager
                             new Player(_content)
                         )
                     );
-                    break;                    
+                    break;             
+
+                case ScreenSwitch.Settings:
+                    _screenStack.Push(
+                        new SettingsScreen(_graphics, _content)
+                    );
+                    break;
+
+                case ScreenSwitch.Sub:
+                    if (currentScreen?.SubScreen != null)
+                    {
+                        _screenStack.Push(currentScreen.SubScreen);
+                    }
+                    break;
             }
         }
 

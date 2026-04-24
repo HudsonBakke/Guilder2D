@@ -1,0 +1,75 @@
+# =========================
+# Build folders
+# =========================
+bin/
+obj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+
+# =========================
+# Visual Studio / Rider / VSCode
+# =========================
+.vs/
+.vscode/
+.idea/
+
+*.user
+*.suo
+*.userprefs
+*.csproj.user
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# MonoGame Content Pipeline
+# =========================
+# MGCB build output
+Content/bin/
+Content/obj/
+
+# MonoGame intermediate files
+*.mgcontent
+*.mgcb-editor
+*.mgb
+
+# =========================
+# .NET / C#
+# =========================
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+
+# =========================
+# JetBrains Rider
+# =========================
+*.sln.iml
+
+# =========================
+# Debug / Temp
+# =========================
+*.tmp
+*.temp
+*.bak
+
+# =========================
+# Publish output
+# =========================
+publish/
+
+# =========================
+# Generated files
+# =========================
+Generated/
