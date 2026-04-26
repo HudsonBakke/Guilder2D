@@ -25,6 +25,7 @@ public class Guilder2D : Game
     private ScreenManager _screenManager;
     private InputManager _inputManager;
     private RenderTarget2D _sceneTarget;
+    private AssetManager _assets;
 
     private int _windowWidth = 1920;
     private int _windowHeight = 1080;
@@ -54,8 +55,7 @@ public class Guilder2D : Game
         IsMouseVisible = true;
         _graphics.PreferredBackBufferWidth = _windowWidth;
         _graphics.PreferredBackBufferHeight = _windowHeight;
-
-        
+        _assets = new(Content);
     }
 
     protected override void Initialize()
@@ -74,7 +74,7 @@ public class Guilder2D : Game
             VirtualHeight
         );
 
-        _screenManager = new(_graphics, Content);
+        _screenManager = new(_graphics, _assets);
         _inputManager = new();
     }
 

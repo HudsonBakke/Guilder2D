@@ -9,16 +9,16 @@ namespace Guilder2D;
 public class ScreenManager
 {
     private readonly ScreenStack _screenStack = new();
-    private readonly ContentManager _content;
+    private readonly AssetManager _assets;
     private readonly GraphicsDeviceManager _graphics;
     private GameInput _gameInput;
 
-    public ScreenManager(GraphicsDeviceManager graphics, ContentManager content)
+    public ScreenManager(GraphicsDeviceManager graphics, AssetManager assets)
     {
         // This constructor will eventually load a start game animation, but for now it will just load directly into the main menu
         _graphics = graphics;
-        _content = content;
-        _screenStack.Push(new MenuScreen(_content));
+        _assets = assets;
+        _screenStack.Push(new MenuScreen(_assets));
     }
 
     /// <summary>
@@ -57,22 +57,22 @@ public class ScreenManager
 
                 case ScreenSwitch.Menu:
                     _screenStack.Clear();
-                    _screenStack.Push(new MenuScreen(_content));
+                    _screenStack.Push(new MenuScreen(_assets));
                     break;
 
                 case ScreenSwitch.NewWorld:
                     _screenStack.Clear();
                     _screenStack.Push(
                         new WorldScreen(
-                            _content, 
-                            new Player(_content)
+                            _assets, 
+                            new Player(_assets)
                         )
                     );
                     break;             
 
                 case ScreenSwitch.Settings:
                     _screenStack.Push(
-                        new SettingsScreen(_graphics, _content)
+                        new SettingsScreen(_graphics, _assets)
                     );
                     break;
 

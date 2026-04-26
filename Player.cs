@@ -18,15 +18,15 @@ public class Player
     private float _playerSpeed = 72f;
     private readonly AnimationState _animationState = new();
 
-    public Player(ContentManager content)
+    public Player(AssetManager assets)
     {
-        _playerSprite = content.Load<Texture2D>("player_sprite_map");
+        _playerSprite = assets.PlayerSpriteMap;
     }
 
     /// <summary>
     /// The player's world position
     /// </summary>
-    public Vector2 Position { get; private set; } = new(10, 10);
+    public Vector2 Position { get; private set; } = new(20, 20);
 
     /// <summary>
     /// The player hitbox, used for collision and combat

@@ -11,14 +11,14 @@ public class WorldScreen : Screen
     private readonly Map _map;
     private readonly Camera _camera;
 
-    public WorldScreen(ContentManager content, Player player)
+    public WorldScreen(AssetManager assets, Player player)
     {
         // _mapTexture = content.Load<Texture2D>("test_map");
         _player = player;
         _camera = new Camera();
 
         // FOR TESTING
-        _map = MapLoader.LoadMap(content, "Maps/PlacedMaps/test_map.json");
+        _map = MapLoader.LoadMap(assets, "Maps/PlacedMaps/test_map.json");
     }
 
     public override void SendInput(GameInput gameInput)

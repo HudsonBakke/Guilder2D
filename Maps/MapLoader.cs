@@ -34,17 +34,11 @@ public class RectangleData
 /// </summary>
 public static class MapLoader
 {
-    /// <summary>
-    /// Loads 
-    /// </summary>
-    /// <param name="content"></param>
-    /// <param name="data"></param>
-    /// <returns></returns>
-    public static PlacedMap LoadMap(ContentManager content, string path)
+    public static PlacedMap LoadMap(AssetManager assets, string path)
     {
         PlacedMapData data = LoadMapData(path);
         PlacedMap newMap = new(
-            content,
+            assets,
             TilesetLoader.LoadTilesetData(data.TilesetName),
             data.Tiles
         );
@@ -52,14 +46,13 @@ public static class MapLoader
         {
             newMap.AddObject(
                 new MapObject(
-                    content,
+                    assets.LoadTexture(obj.TextureSource),
                     new Rectangle(
                         obj.Position.X,
                         obj.Position.Y,
                         obj.Position.Width,
                         obj.Position.Height
                     ),
-                    obj.TextureSource,
                     obj.Collidable
                 )
             );

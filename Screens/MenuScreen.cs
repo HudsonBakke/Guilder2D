@@ -106,24 +106,24 @@ public class MenuScreen : Screen
     private readonly MenuButton _exitGameButton;
     private readonly Texture2D _backgroundTexture;
 
-    public MenuScreen(ContentManager content)
+    public MenuScreen(AssetManager assets)
     {
         _startGameButton = new(
-            content.Load<Texture2D>("start_game_button"),
-            new Vector2(150,50)
+            assets.StartGameButton,
+            new Vector2(200,100)
         );
 
         _settingsButton = new(
-            content.Load<Texture2D>("exit_game_button"), // I have not made a unique texture for the settings button yet
-            new Vector2(150,120)
+            assets.ExitGameButton, // I have not made a unique texture for the settings button yet
+            new Vector2(200,160)
         );
 
         _exitGameButton = new(
-            content.Load<Texture2D>("exit_game_button"),
-            new Vector2(150,190)
+            assets.ExitGameButton,
+            new Vector2(200,220)
         );
 
-        _backgroundTexture = content.Load<Texture2D>("menu_background");
+        _backgroundTexture = assets.MainMenu;
     }
 
     public override void SendInput(GameInput gameInput)

@@ -15,11 +15,11 @@ public class MapObject
     private readonly bool _collidable;
     private readonly Texture2D _texture;
 
-    public MapObject(ContentManager content, Rectangle position, string textureSource, bool collidable = false)
+    public MapObject(Texture2D texture, Rectangle position, bool collidable = false)
     {
         Position = position;
         _collidable = collidable;
-        _texture = content.Load<Texture2D>(textureSource);
+        _texture = texture;
     }
 
     public Rectangle Position { get; private set; }

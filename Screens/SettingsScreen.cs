@@ -9,7 +9,7 @@ public class SettingsScreen : Screen
 {
     private readonly GraphicsDeviceManager _graphics;
     private readonly MenuButton _changeRes;
-    private readonly ContentManager _content;
+    private readonly AssetManager _assets;
 
     private void UpdateResolution(int newWidth, int newHeight)
     {
@@ -18,13 +18,13 @@ public class SettingsScreen : Screen
         _graphics.ApplyChanges();
     }
 
-    public SettingsScreen(GraphicsDeviceManager graphics, ContentManager content)
+    public SettingsScreen(GraphicsDeviceManager graphics, AssetManager assets)
     {
         _graphics = graphics;
-        _content = content;
+        _assets = assets;
 
         _changeRes = new(
-            _content.Load<Texture2D>("change_resolution_button"),
+            _assets.ExitGameButton,
             new Vector2(0, 0) // Will update this later once I have the screen layout decided
         );
     }
@@ -39,7 +39,7 @@ public class SettingsScreen : Screen
         _changeRes.SendInput(_gameInput);
         _changeRes.Update();
 
-        if (_changeRes.WasClicked)
+        /*if (_changeRes.WasClicked)
         {
             SubScreen = new DropDownMenu(
                 [
@@ -63,7 +63,7 @@ public class SettingsScreen : Screen
             );
 
             NextScreen = ScreenSwitch.Sub;
-        }
+        }*/
     }
 
     public override void Draw(SpriteBatch spriteBatch)

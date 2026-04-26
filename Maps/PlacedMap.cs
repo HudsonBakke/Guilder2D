@@ -8,11 +8,11 @@ namespace Guilder2D;
 
 public class PlacedMap : Map
 {
-    public PlacedMap(ContentManager content, TilesetData tilesetData, List<List<int>> tiles)
+    public PlacedMap(AssetManager assets, TilesetData tilesetData, List<List<int>> tiles)
     {
         _objects = [];
 
-        _tileAtlas = content.Load<Texture2D>(tilesetData.TextureAsset);
+        _tileAtlas = assets.LoadTexture(tilesetData.TextureAsset);
         _tileWidth = tilesetData.TileWidth;
         _tileHeight = tilesetData.TileHeight;
         foreach (var (strId, pos) in tilesetData.TileMappings)
