@@ -2,57 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Guilder2D;
-
-/// <summary>
-/// Holds data for map objects
-/// </summary>
-public class MapObject
-{
-    private readonly bool _collidable;
-    private readonly Texture2D _texture;
-
-    public MapObject(Texture2D texture, Rectangle position, bool collidable = false)
-    {
-        Position = position;
-        _collidable = collidable;
-        _texture = texture;
-    }
-
-    public Rectangle Position { get; private set; }
-
-    /// <summary>
-    /// Use to detect collision
-    /// </summary>
-    /// <param name="hitbox">Hitbox for collision</param>
-    /// <returns>bool</returns>
-    public bool CollidesWith(Rectangle hitbox)
-        => _collidable && Position.Intersects(hitbox);
-    
-    /// <summary>
-    /// Call this method to draw the object to the screen.
-    /// </summary>
-    /// <param name="spriteBatch">MonoGame SpriteBatch object</param>
-    public void Draw(SpriteBatch spriteBatch, Camera camera)
-    {
-        Vector2 drawPos = camera.WorldToScreen(new Vector2(Position.X, Position.Y));
-
-        spriteBatch.Draw(
-            texture: _texture,
-            position: drawPos,
-            sourceRectangle: new Rectangle(
-                0,
-                0,
-                _texture.Width,
-                _texture.Height
-            ),
-            color: Color.White
-        );
-    }
-}
 
 /// <summary>
 /// Holds game maps. May be procedural or placed.
@@ -86,11 +38,13 @@ public abstract class Map
     /// </summary>
     /// <param name="hitbox">Hitbox for collision</param>
     /// <returns>True if collision is detected, false if not</returns>
-    public bool CollidesWith(Rectangle hitbox)
+    public bool CollidesWith(IEntity entity)
     {
         // First check objects
-        if (_objects.Any(obj => obj.CollidesWith(hitbox)))
+        if (_objects.Any(obj => obj.CollidesWith(entity)))
             return true;
+
+        Rectangle hitbox = entity.Hitbox;
 
         // Convert hitbox to tile coordinates
         int startCol = Math.Max(0, hitbox.Left / _tileWidth);
@@ -110,6 +64,19 @@ public abstract class Map
         }
 
         return false;
+    }
+
+    public void UpdateObjects(GameTime gameTime, Player player, Point mousePos, bool select, bool interact)
+    {
+        foreach (MapObject obj in _objects)
+        {
+            if (obj.ContainsMouse(mousePos) && obj.IsInInteractRange(player))
+            {
+                if (select) obj.OnSelect();
+                if (interact) obj.OnInteract();
+            }
+            obj.Update(gameTime);
+        }
     }
 
     /// <summary>

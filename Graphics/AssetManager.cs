@@ -8,6 +8,14 @@ public static class AssetPaths
 {
     public static class Textures
     {
+        public static class Combat
+        {
+            public static class CombatAnimations
+            {
+                public const string Swoosh = "Combat/CombatAnimations/swoosh";
+            }
+        }
+
         public static class MenuAssets
         {
             public static class Backgrounds
@@ -37,6 +45,7 @@ public static class AssetPaths
             public static class Objects
             {
                 public const string Pot = "WorldAssets/Objects/pot";
+                public const string BrokenPot = "WorldAssets/Objects/broken-pot";
                 public const string Rock1 = "WorldAssets/Objects/rock-1";
             }
         }
@@ -69,12 +78,14 @@ public class AssetManager
         return texture;
     }
 
+    public Texture2D Swoosh => LoadTexture(AssetPaths.Textures.Combat.CombatAnimations.Swoosh);
     public Texture2D MainMenu => LoadTexture(AssetPaths.Textures.MenuAssets.Backgrounds.MainMenu);
     public Texture2D StartGameButton => LoadTexture(AssetPaths.Textures.MenuAssets.Buttons.StartGame);
     public Texture2D ExitGameButton => LoadTexture(AssetPaths.Textures.MenuAssets.Buttons.ExitGame);
     public Texture2D PlayerSpriteMap => LoadTexture(AssetPaths.Textures.SpriteMaps.Player);
     public Texture2D TestTileset => LoadTexture(AssetPaths.Textures.Tilesets.TestTileset);
     public Texture2D Pot => LoadTexture(AssetPaths.Textures.WorldAssets.Objects.Pot);
+    public Texture2D BrokenPot => LoadTexture(AssetPaths.Textures.WorldAssets.Objects.BrokenPot);
     public Texture2D Rock1 => LoadTexture(AssetPaths.Textures.WorldAssets.Objects.Rock1);
 
     public PlacedMap TestMap => MapLoader.LoadMap(this, AssetPaths.Maps.TestMap);

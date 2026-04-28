@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Guilder2D;
@@ -8,11 +7,8 @@ namespace Guilder2D;
 /// This class holds the data and methods for the player. Input is passed in via the PlayerInput struct and SendInput() method, 
 /// and then the Update() and Draw() methods are called.
 /// </summary>
-public class Player
+public class Player : IEntity
 {
-    private const int PlayerWidth = 16;
-    private const int PlayerHeight = 32;
-
     private readonly Texture2D _playerSprite;
     private GameInput _input;
     private float _playerSpeed = 72f;
@@ -23,28 +19,39 @@ public class Player
         _playerSprite = assets.PlayerSpriteMap;
     }
 
+    public int Width { get; } = 16;
+    public int Height { get; } = 32;
+
+    private Vector2 _position = new(20, 20);
     /// <summary>
     /// The player's world position
     /// </summary>
-    public Vector2 Position { get; private set; } = new(20, 20);
+    public Vector2 Position 
+    { 
+        get { return _position; } 
+        private set { _position = value; }
+    }
 
     /// <summary>
     /// The player hitbox, used for collision and combat
     /// </summary>
     public Rectangle Hitbox => new(
-        (int)Position.X, 
-        (int)Position.Y, 
-        PlayerWidth, 
-        PlayerHeight
+        (int)_position.X, 
+        (int)_position.Y, 
+        Width, 
+        Height
     );
 
     /// <summary>
     /// The center of the player sprite/hitbox
     /// </summary>
     public Vector2 Center => new(
-        Position.X + PlayerWidth / 2f, 
-        Position.Y + PlayerHeight / 2f
+        Position.X + Width / 2f, 
+        Position.Y + Height / 2f
     );
+
+    public bool CollidesWith(IEntity other)
+        => Hitbox.Intersects(other.Hitbox);
 
     /// <summary>
     /// Use this method to pass keyboard/mouse/controller input to the Player object.
@@ -90,21 +97,15 @@ public class Player
 
         if (map != null)
         {
-            Rectangle newHitbox = new(
-                (int)newPos.X,
-                (int)Position.Y,
-                Hitbox.Width,
-                Hitbox.Height
-            );
+            Vector2 oldPos = Position;
 
             // Test X direction for collision
-            if (!map.CollidesWith(newHitbox)) Position = new Vector2(newPos.X, Position.Y);
+            _position.X = newPos.X;
+            if (map.CollidesWith(this)) _position.X = oldPos.X;
 
             // Test Y direction for collision
-
-            newHitbox.X = (int)Position.X;
-            newHitbox.Y = (int)newPos.Y;
-            if (!map.CollidesWith(newHitbox)) Position = new Vector2(Position.X, newPos.Y);
+            _position.Y = newPos.Y;
+            if (map.CollidesWith(this)) _position.Y = oldPos.Y;
         }
         else Position = newPos;
     }
@@ -115,7 +116,7 @@ public class Player
     /// <param name="spriteBatch">MonoGame SpriteBatch object</param>
     public void Draw(SpriteBatch spriteBatch, Camera camera)
     {
-        Vector2 drawPos = camera.WorldToScreen(Position);
+        Vector2 drawPos = camera.WorldToScreen(_position);
 
         spriteBatch.Draw(
             texture: _playerSprite,

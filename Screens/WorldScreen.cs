@@ -30,6 +30,7 @@ public class WorldScreen : Screen
     {
         _player.SendInput(_gameInput);
         _player.Update(gameTime, _map);
+        _map.UpdateObjects(gameTime, _player, _gameInput.MousePos, _gameInput.Select == PressState.Held, false);
         _camera.Follow(
             _player.Center,
             Guilder2D.VirtualWidth,

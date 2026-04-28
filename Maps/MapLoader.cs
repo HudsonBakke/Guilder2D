@@ -16,17 +16,8 @@ public class PlacedMapData
 
 public class MapObjectData
 {
-    public RectangleData Position { get; set; } = new();
-    public string TextureSource { get; set; } = "";
-    public bool Collidable { get; set; }
-}
-
-public class RectangleData
-{
-    public int X { get; set; }
-    public int Y { get; set; }
-    public int Width { get; set; }
-    public int Height { get; set; }
+    public List<int> Position { get; set; } = [];
+    public string Asset { get; set; } = "";
 }
 
 /// <summary>
@@ -45,16 +36,9 @@ public static class MapLoader
         foreach(MapObjectData obj in data.Objects)
         {
             newMap.AddObject(
-                new MapObject(
-                    assets.LoadTexture(obj.TextureSource),
-                    new Rectangle(
-                        obj.Position.X,
-                        obj.Position.Y,
-                        obj.Position.Width,
-                        obj.Position.Height
-                    ),
-                    obj.Collidable
-                )
+                MapObjectFactory.GetMapObject(
+                    assets, obj.Asset
+                ).UpdatePos(new Vector2(obj.Position[0], obj.Position[1]))
             );
         }
         return newMap;

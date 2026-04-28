@@ -10,10 +10,12 @@
     <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/NULL.png</File>
     <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/SpriteMaps/Player/player_sprite_map.png</File>
     <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/Tilesets/test_tileset/tile_atlas.png</File>
+    <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/WorldAssets/Objects/broken-pot.png</File>
     <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/WorldAssets/Objects/pot.png</File>
     <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/WorldAssets/Objects/rock-1.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
