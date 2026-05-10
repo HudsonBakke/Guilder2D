@@ -64,8 +64,7 @@ public class ScreenManager
                     _screenStack.Clear();
                     _screenStack.Push(
                         new WorldScreen(
-                            _assets, 
-                            new Player(_assets)
+                            _assets
                         )
                     );
                     break;             

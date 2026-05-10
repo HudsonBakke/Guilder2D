@@ -7,18 +7,19 @@ namespace Guilder2D;
 public class WorldScreen : Screen
 {
     private readonly Player _player;
-    // private readonly Texture2D _mapTexture;
     private readonly Map _map;
     private readonly Camera _camera;
 
-    public WorldScreen(AssetManager assets, Player player)
+    public WorldScreen(AssetManager assets)
     {
-        // _mapTexture = content.Load<Texture2D>("test_map");
-        _player = player;
+        _player = new Player(assets);
         _camera = new Camera();
 
         // FOR TESTING
         _map = MapLoader.LoadMap(assets, "Maps/PlacedMaps/test_map.json");
+
+        _map.Entities.Spawn(_player);
+        _map.Entities.Spawn(new TestEnemy(assets));
     }
 
     public override void SendInput(GameInput gameInput)
@@ -29,8 +30,7 @@ public class WorldScreen : Screen
     public override void Update(GameTime gameTime)
     {
         _player.SendInput(_gameInput);
-        _player.Update(gameTime, _map);
-        _map.UpdateObjects(gameTime, _player, _gameInput.MousePos, _gameInput.Select == PressState.Held, false);
+        _map.UpdateEntities(gameTime, _player, _gameInput.MousePos, _gameInput.Select == PressState.Held, false);
         _camera.Follow(
             _player.Center,
             Guilder2D.VirtualWidth,

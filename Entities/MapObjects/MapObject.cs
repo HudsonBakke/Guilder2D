@@ -23,27 +23,27 @@ public abstract class MapObject : IEntity
     public int Width { get; }
     public int Height { get; }
     public Vector2 Position { get; private set; }
-    public Rectangle Hitbox => new(
+    public Rectangle CollisionBox => new(
         (int)Position.X,
         (int)Position.Y,
         Width,
         Height
     );
     public Rectangle InteractRange => new(
-        Hitbox.X - 50,
-        Hitbox.Y - 50,
+        CollisionBox.X - 50,
+        CollisionBox.Y - 50,
         Width + 100,
         Height + 100
     );
 
     public bool CollidesWith(IEntity other)
-        => Hitbox.Intersects(other.Hitbox) && _collidable;
+        => CollisionBox.Intersects(other.CollisionBox) && _collidable;
 
     public bool ContainsMouse(Point mousePos)
-        => Hitbox.Contains(mousePos);
+        => CollisionBox.Contains(mousePos);
 
     public bool IsInInteractRange(IEntity other)
-        => InteractRange.Intersects(other.Hitbox);
+        => InteractRange.Intersects(other.CollisionBox);
 
     public MapObject UpdatePos(Vector2 newPos)
     {
@@ -63,7 +63,7 @@ public abstract class MapObject : IEntity
     
     public void Draw(SpriteBatch spriteBatch, Camera camera)
     {
-        Vector2 drawPos = camera.WorldToScreen(new Vector2(Hitbox.X, Hitbox.Y));
+        Vector2 drawPos = camera.WorldToScreen(new Vector2(CollisionBox.X, CollisionBox.Y));
 
         spriteBatch.Draw(
             texture: _texture,

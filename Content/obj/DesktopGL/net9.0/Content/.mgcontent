@@ -4,6 +4,7 @@
   <Platform>DesktopGL</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/Combat/CombatAnimations/swoosh.png</File>
     <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/MenuAssets/Backgrounds/main-menu-background.png</File>
     <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/MenuAssets/Buttons/exit_game_button.png</File>
     <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/MenuAssets/Buttons/start_game_button.png</File>
@@ -15,6 +16,7 @@
     <File>C:/Users/hudso/OneDrive/Documents/C# Projects/Guilder2D/Guilder2D/Content/WorldAssets/Objects/rock-1.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

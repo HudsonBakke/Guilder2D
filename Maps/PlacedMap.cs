@@ -10,8 +10,6 @@ public class PlacedMap : Map
 {
     public PlacedMap(AssetManager assets, TilesetData tilesetData, List<List<int>> tiles)
     {
-        _objects = [];
-
         _tileAtlas = assets.LoadTexture(tilesetData.TextureAsset);
         _tileWidth = tilesetData.TileWidth;
         _tileHeight = tilesetData.TileHeight;
@@ -66,9 +64,9 @@ public class PlacedMap : Map
             }
         }
 
-        foreach (MapObject obj in _objects)
+        foreach (IEntity entity in Entities.GlobalEntities)
         {
-            obj.Draw(spriteBatch, camera);
+            entity.Draw(spriteBatch, camera);
         }
     }
 }

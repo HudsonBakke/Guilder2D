@@ -17,12 +17,12 @@ public abstract class Map
     protected Dictionary<int, Rectangle> _tileAtlasPositions = [];
     protected HashSet<int> _collisionTiles;
     protected Texture2D _tileAtlas;
-    protected List<MapObject> _objects;
 
     public int WidthInTiles => _tiles.Count == 0 ? 0 : _tiles[0].Count;
     public int HeightInTiles => _tiles.Count;
     public int WidthInPixels => WidthInTiles * _tileWidth;
     public int HeightInPixels => HeightInTiles * _tileHeight;
+    public EntityManager Entities { get; } = new EntityManager();
 
     /// <summary>
     /// Used to add objects to the map
@@ -30,21 +30,26 @@ public abstract class Map
     /// <param name="mapObject">The object to be added</param>
     public void AddObject(MapObject mapObject)
     {
-        _objects.Add(mapObject);
+        Entities.Spawn(mapObject);
     }
 
     /// <summary>
     /// Loops through all map objects and tiles to see if there is a collision
     /// </summary>
-    /// <param name="hitbox">Hitbox for collision</param>
+    /// <param name="entity">Entity to be checked</param>
     /// <returns>True if collision is detected, false if not</returns>
     public bool CollidesWith(IEntity entity)
     {
         // First check objects
-        if (_objects.Any(obj => obj.CollidesWith(entity)))
+        if (Entities.GlobalEntities.Any(obj =>
+            obj is MapObject &&
+            !ReferenceEquals(obj, entity) &&
+            obj.CollidesWith(entity)))
+        {
             return true;
+        }
 
-        Rectangle hitbox = entity.Hitbox;
+        Rectangle hitbox = entity.CollisionBox;
 
         // Convert hitbox to tile coordinates
         int startCol = Math.Max(0, hitbox.Left / _tileWidth);
@@ -66,17 +71,20 @@ public abstract class Map
         return false;
     }
 
-    public void UpdateObjects(GameTime gameTime, Player player, Point mousePos, bool select, bool interact)
+    public void UpdateEntities(GameTime gameTime, Player player, Point mousePos, bool select, bool interact)
     {
-        foreach (MapObject obj in _objects)
+        foreach (IEntity entity in Entities.GlobalEntities)
         {
-            if (obj.ContainsMouse(mousePos) && obj.IsInInteractRange(player))
+            if (entity is MapObject obj &&
+                obj.ContainsMouse(mousePos) && 
+                obj.IsInInteractRange(player))
             {
                 if (select) obj.OnSelect();
                 if (interact) obj.OnInteract();
             }
-            obj.Update(gameTime);
         }
+
+        Entities.UpdateAll(gameTime, this);
     }
 
     /// <summary>

@@ -10,9 +10,9 @@ public interface IEntity
     public Vector2 Position { get; }
 
     /// <summary>
-    /// The entity's hitbox
+    /// The entity's collision hitbox
     /// </summary>
-    public Rectangle Hitbox { get; }
+    public Rectangle CollisionBox { get; }
 
     public bool CollidesWith(IEntity other);
 
